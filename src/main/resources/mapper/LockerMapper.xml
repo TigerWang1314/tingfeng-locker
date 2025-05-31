@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tencent.wxcloudrun.dao.LockerMapper">
+
+    <resultMap id="lockerMapper" type="com.tencent.wxcloudrun.model.Counter">
+        <id property="id" column="_id"/>
+        <result property="name" column="_name"/>
+        <result property="action" column="_action" />
+        <result property="phone" column="_phone" />
+        <result property="days" column="_days" />
+        <result property="time" column="_time" javaType="java.time.LocalDateTime"  />
+    </resultMap>
+
+    <insert id="add" parameterType="com.tencent.wxcloudrun.model.Locker">
+        INSERT INTO `m_locker_record` (`_name`, `_action`, `_phone`, `_days`)
+        VALUE(#{name}, #{action}, #{phone}, #{days})
+    </insert>
+
+</mapper>
