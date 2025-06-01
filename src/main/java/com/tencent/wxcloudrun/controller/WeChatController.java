@@ -5,6 +5,8 @@ import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import cn.binarywang.wx.miniapp.bean.WxMaPhoneNumberInfo;
 import lombok.Data;
 import me.chanjar.weixin.common.error.WxErrorException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,12 @@ public class WeChatController {
 
     @Autowired
     private WxMaService wxMaService;
+
+    final Logger logger;
+
+    public WeChatController() {
+        this.logger = LoggerFactory.getLogger(WeChatController.class);
+    }
 
     @PostMapping("/decrypt-phone")
     public ResponseEntity<?> decryptPhone(
@@ -38,6 +46,8 @@ public class WeChatController {
             return ResponseEntity.ok(phoneNoInfo);
 
         } catch (WxErrorException e) {
+            e.printStackTrace();
+            logger.error(e.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new ErrorResponse(e.getError().getErrorMsg()));
         }
