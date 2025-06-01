@@ -20,7 +20,7 @@ public class WeChatController {
     @Autowired
     private WxMaService wxMaService;
 
-    @PostMapping("/decryptPhone")
+    @PostMapping("/decrypt-phone")
     public ResponseEntity<?> decryptPhone(
             @RequestParam String code,
             @RequestParam String encryptedData,
