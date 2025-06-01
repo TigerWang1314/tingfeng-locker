@@ -1,6 +1,13 @@
 server:
   port: 80
 
+wx:
+  miniapp:
+    configs:
+      - appid: wx3c14fae9b1d2bf9e
+        secret: 548849853e5c855e4b65d71c40cb80bf
+        token:
+        aesKey:
 
 spring:
   datasource:
